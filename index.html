@@ -3,439 +3,794 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WTF - Just A Trencher Giving The Trenches What They Want</title>
+<title>$WTF — The Coin For The Exact Moment You Can't Believe It</title>
+<meta name="description" content="$WTF. The reaction, tokenized. Fair-launched on pump.fun. No roadmap, no promises, just pure degen chaos on Solana.">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="/wtfLogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:ital,wght@0,400;0,600;0,700;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="wtfLogo.png">
 
 <style>
 
-/* ========== GLOBAL RESET ========== */
-* {
-    box-sizing: border-box;
+/* ========== TOKENS ========== */
+:root{
+    --void:      #0a0704;
+    --char:      #170a06;
+    --ember-deep:#5c0e02;
+    --ember:     #ff4d00;
+    --ember-hot: #ff8a00;
+    --gold:      #ffcc33;
+    --bone:      #f5ede0;
+    --bone-dim:  #cfc4b2;
+    --glitch:    #22e6ff;
+    --font-display: 'Bangers', cursive;
+    --font-body: 'Oswald', sans-serif;
+    --font-mono: 'Space Mono', monospace;
 }
 
-html, body {
-    overflow-x: hidden;
+/* ========== RESET ========== */
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+html,body{ overflow-x:hidden; }
+body{
+    font-family:var(--font-body);
+    background-color:var(--void);
+    color:var(--bone);
+    margin:0;
+    padding:0;
+    line-height:1.6;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+::selection{ background:var(--ember); color:var(--void); }
+
+:focus-visible{
+    outline:3px solid var(--glitch);
+    outline-offset:3px;
 }
 
-body {
-    font-family: 'Oswald', sans-serif;
-    background-color: #0a0a0a;
-    color: #e0e0e0;
-    margin: 0;
-    padding: 0;
+.container{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
 }
 
-/* ========== CONTAINER FIX ========== */
-.container {
-    max-width: 1140px;
+.eyebrow{
+    font-family:var(--font-mono);
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:.78rem;
+    color:var(--gold);
+    display:inline-block;
+    margin-bottom:14px;
+    opacity:.85;
 }
 
-/* ========== NAVBAR ========== */
-.navbar {
-    background-color: rgba(0, 0, 0, 0.85);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    backdrop-filter: blur(8px);
+h1,h2,h3{ font-family:var(--font-display); letter-spacing:.5px; }
+h2{
+    font-size:clamp(2.2rem, 5vw, 3.4rem);
+    color:var(--gold);
+    margin:0 0 12px;
+    text-shadow:3px 3px 0 rgba(0,0,0,.5);
+}
+.section-lede{
+    color:var(--bone-dim);
+    max-width:640px;
+    margin:0 auto 48px;
+    font-size:1.05rem;
+}
+.section-lede.left{ margin-left:0; }
+
+section{ padding:110px 0; position:relative; }
+section.tight{ padding:80px 0; }
+
+.reveal{ transition:opacity .7s ease, transform .7s ease; }
+.reveal.pre{ opacity:0; transform:translateY(28px); }
+.reveal.pre.in{ opacity:1; transform:none; }
+
+@media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+    html{ scroll-behavior:auto; }
 }
 
-.navbar-brand {
-    color: #ffd700 !important;
-    font-family: 'Bangers', cursive;
-    font-size: 2rem;
+/* ========== NAV ========== */
+.nav{
+    position:fixed; top:0; left:0; width:100%; z-index:1000;
+    background:rgba(10,7,4,.72);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,204,51,.15);
+}
+.nav-inner{
+    max-width:1080px; margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+}
+.brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--font-display); font-size:1.6rem; color:var(--gold);
+    text-decoration:none;
+}
+.brand img{ width:32px; height:32px; }
+
+.nav-links{ display:flex; gap:28px; list-style:none; margin:0; padding:0; }
+.nav-links a{
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
+    text-decoration:none; color:var(--bone-dim); position:relative; padding:4px 0;
+}
+.nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--ember-hot);
+    transition:width .25s ease;
+}
+.nav-links a:hover{ color:var(--gold); }
+.nav-links a:hover::after{ width:100%; }
+
+.nav-cta{
+    font-family:var(--font-mono); font-size:.75rem; letter-spacing:.06em; text-transform:uppercase;
+    background:var(--gold); color:var(--void); padding:9px 16px; border-radius:5px; text-decoration:none;
+    font-weight:700;
 }
 
-.nav-link {
-    color: #ffd700 !important;
-    font-size: 1.1rem;
+.nav-toggle{
+    display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px;
+}
+.nav-toggle span{ width:24px; height:2px; background:var(--gold); display:block; }
+
+@media (max-width: 860px){
+    .nav-links{
+        position:fixed; top:64px; left:0; width:100%; background:var(--char);
+        flex-direction:column; align-items:flex-start; gap:0;
+        max-height:0; overflow:hidden; transition:max-height .3s ease;
+        border-bottom:1px solid rgba(255,204,51,.15);
+    }
+    .nav-links.open{ max-height:400px; }
+    .nav-links li{ width:100%; }
+    .nav-links a{ display:block; padding:16px 24px; width:100%; }
+    .nav-links a::after{ display:none; }
+    .nav-cta{ display:none; }
+    .nav-toggle{ display:flex; }
 }
 
-.nav-link:hover {
-    color: #00bfff !important;
+/* ========== TICKER ========== */
+.ticker{
+    position:fixed; top:64px; left:0; width:100%; z-index:999;
+    background:var(--ember-deep);
+    border-bottom:1px solid rgba(255,204,51,.25);
+    overflow:hidden; white-space:nowrap;
+    height:34px; display:flex; align-items:center;
+}
+.ticker-track{
+    display:inline-flex; gap:48px; padding-left:100%;
+    animation:ticker 26s linear infinite;
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.04em; color:var(--bone);
+}
+.ticker-track span{ display:inline-flex; align-items:center; gap:8px; }
+.ticker-track .dot{ color:var(--gold); }
+@keyframes ticker{ to{ transform:translateX(-100%); } }
+
+/* ========== HERO ========== */
+header{
+    background:
+        radial-gradient(ellipse at 50% 15%, rgba(255,138,0,.35), transparent 55%),
+        linear-gradient(to bottom, #3a0a02 0%, #170a06 55%, var(--void) 100%);
+    min-height:100vh;
+    padding-top:150px;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center; position:relative; overflow:hidden;
+}
+#embers{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+
+.hero-logo{
+    width:150px; height:150px; margin-bottom:22px;
+    filter:drop-shadow(0 0 30px rgba(255,77,0,.55));
+    animation:float 4s ease-in-out infinite;
+}
+@keyframes float{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+
+header h1{
+    font-family:var(--font-display);
+    font-size:clamp(4.5rem, 15vw, 10rem);
+    color:var(--gold);
+    text-shadow:4px 4px 0 var(--ember-deep), 8px 8px 24px rgba(0,0,0,.6);
+    margin:0; line-height:.9;
+    position:relative;
+}
+header h1 .glitch-layer{
+    position:absolute; top:0; left:0; width:100%; height:100%;
+    color:var(--glitch); opacity:0; mix-blend-mode:screen;
+}
+header h1.glitching .glitch-layer{ animation:glitchflash .35s steps(2,end) 1; }
+@keyframes glitchflash{
+    0%{ opacity:0; transform:translate(0,0); }
+    20%{ opacity:.85; transform:translate(4px,-2px); }
+    40%{ opacity:.7; transform:translate(-5px,2px); }
+    60%{ opacity:.85; transform:translate(3px,1px); }
+    100%{ opacity:0; transform:translate(0,0); }
 }
 
-.navbar-toggler {
-    border-color: #ffd700;
+header .tagline{
+    font-family:var(--font-body); font-weight:600; font-style:italic;
+    font-size:clamp(1.1rem, 2.6vw, 1.7rem);
+    color:var(--bone); margin-top:18px; max-width:600px;
+}
+header .subtag{
+    font-family:var(--font-mono); font-size:.85rem; color:var(--bone-dim);
+    margin-top:10px; letter-spacing:.04em;
 }
 
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,215,0,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
+.hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:38px; }
 
-/* ========== HEADER HERO ========== */
-header {
-    background: linear-gradient(to bottom, #770e00, #2b0300);
-    min-height: 100vh;
-    padding-top: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
+.btn{
+    font-family:var(--font-display); font-size:1.2rem; letter-spacing:.5px;
+    padding:15px 30px; border-radius:8px; text-decoration:none; display:inline-block;
+    border:2px solid transparent; transition:transform .2s ease, box-shadow .2s ease;
+    cursor:pointer;
 }
+.btn-primary{ background:var(--gold); color:var(--void); box-shadow:0 6px 0 #a67a00; }
+.btn-primary:hover{ transform:translateY(-3px); box-shadow:0 9px 0 #a67a00; }
+.btn-primary:active{ transform:translateY(2px); box-shadow:0 3px 0 #a67a00; }
+.btn-ghost{ background:transparent; color:var(--gold); border-color:var(--gold); }
+.btn-ghost:hover{ background:rgba(255,204,51,.1); transform:translateY(-3px); }
 
-header img {
-    max-width: 220px;
-    width: 80%;
-    height: auto;
-    margin-bottom: 20px;
+.scroll-cue{
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    font-family:var(--font-mono); font-size:.7rem; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--bone-dim); display:flex; flex-direction:column; align-items:center; gap:6px;
 }
+.scroll-cue .line{ width:1px; height:26px; background:linear-gradient(to bottom, var(--gold), transparent); animation:scrolldown 1.8s ease infinite; }
+@keyframes scrolldown{ 0%{ opacity:0; transform:scaleY(0); transform-origin:top; } 40%{ opacity:1; transform:scaleY(1); transform-origin:top; } 100%{ opacity:0; transform:scaleY(1); transform-origin:bottom; } }
 
-header h1 {
-    font-family: 'Bangers', cursive;
-    font-size: clamp(3rem, 8vw, 8rem);
-    color: #ffd700;
-    text-shadow: 4px 4px 8px rgba(0,0,0,0.8);
-    animation: bounce 2s infinite;
-    margin: 0;
-}
+/* ========== SECTION BACKDROPS ========== */
+#about{ background:var(--char); }
+#tokenomics{ background:var(--void); }
+#chaosmeter{ background:linear-gradient(to bottom, var(--void), var(--char)); text-align:center; }
+#stats-section{ background:var(--char); }
+#roadmap{ background:var(--void); }
+#faq{ background:var(--char); }
+#community{ background:linear-gradient(160deg, var(--ember-deep), #2b0300 70%); }
 
-header p {
-    font-size: clamp(1rem, 2.5vw, 2rem);
-    margin-top: 15px;
-}
+/* ========== ABOUT ========== */
+.about-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center; }
+.about-grid p{ color:var(--bone-dim); font-size:1.05rem; margin-bottom:16px; }
+.about-grid img{ border-radius:14px; box-shadow:0 12px 30px rgba(0,0,0,.55); border:1px solid rgba(255,204,51,.2); }
+@media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } .about-grid .img-col{ order:-1; } }
 
-/* ========== SECTIONS ========== */
-section {
-    padding: 80px 20px;
+/* ========== TOKENOMICS ========== */
+.token-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.token-card{
+    background:rgba(255,204,51,.05); border:1px solid rgba(255,204,51,.25); border-radius:12px;
+    padding:26px 18px; text-align:center; transition:transform .25s ease, border-color .25s ease;
 }
-.tokenomics-logo {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    display: block;
-    margin: 30px auto 0 auto;
-}
+.token-card:hover{ transform:translateY(-6px); border-color:var(--gold); }
+.token-card .val{ font-family:var(--font-mono); font-size:1.5rem; color:var(--gold); font-weight:700; word-break:break-word; }
+.token-card .lab{ font-size:.82rem; color:var(--bone-dim); text-transform:uppercase; letter-spacing:.08em; margin-top:8px; }
+@media (max-width:760px){ .token-grid{ grid-template-columns:1fr 1fr; } }
 
-#main { background-color: #1a1a1a; text-align: center; }
-#about { background-color: #111; text-align: center; }
-#tokenomics { background-color: #0a0a0a; color: #ffd700; text-align: center; }
-#stats-section { background-color: #1a1a1a; text-align: center; }
-#roadmap { background-color: #0a0a0a; }
-#community { background: linear-gradient(to bottom, #2b0300, #770e00); text-align: center; }
-
-h2 {
-    margin-bottom: 30px;
+.ca-strip{
+    margin-top:30px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center;
+    background:var(--char); border:1px dashed rgba(255,204,51,.4); border-radius:10px; padding:14px 18px;
 }
-
-/* ========== IMAGES ========== */
-.meme-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    margin-top: 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+.ca-strip code{ font-family:var(--font-mono); color:var(--bone); font-size:.85rem; word-break:break-all; }
+.copy-btn{
+    font-family:var(--font-mono); font-size:.75rem; letter-spacing:.05em; text-transform:uppercase;
+    background:var(--gold); color:var(--void); border:none; padding:9px 16px; border-radius:6px; cursor:pointer;
+    font-weight:700; white-space:nowrap; transition:background .2s ease;
 }
+.copy-btn:hover{ background:var(--ember-hot); }
 
-/* ========== STAT CARDS ========== */
-.stat-card {
-    background-color: rgba(0,191,255,0.15);
-    border: 2px solid #ffd700;
-    border-radius: 12px;
-    padding: 30px;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
+/* ========== CHAOS METER (signature) ========== */
+.meter-wrap{ display:flex; flex-direction:column; align-items:center; gap:22px; }
+.gauge{ width:280px; max-width:80vw; }
+.gauge .needle{ transform-origin:150px 150px; transform:rotate(-90deg); transition:transform 1.1s cubic-bezier(.34,1.56,.64,1); }
+.chaos-readout{
+    font-family:var(--font-mono); font-size:2.6rem; color:var(--gold); font-weight:700; min-height:1.3em;
 }
+.chaos-verdict{
+    font-family:var(--font-display); font-size:1.6rem; color:var(--bone); max-width:520px; min-height:2.6em;
+    display:flex; align-items:center; justify-content:center; text-shadow:2px 2px 0 rgba(0,0,0,.5);
+}
+.chaos-btn{
+    font-family:var(--font-display); font-size:1.3rem; background:var(--ember); color:var(--bone);
+    border:none; padding:16px 34px; border-radius:8px; cursor:pointer; box-shadow:0 6px 0 #a52f00;
+    transition:transform .2s ease, box-shadow .2s ease;
+}
+.chaos-btn:hover{ transform:translateY(-3px); box-shadow:0 9px 0 #a52f00; }
+.chaos-btn:active{ transform:translateY(2px); box-shadow:0 3px 0 #a52f00; }
+.chaos-btn.spinning{ animation:shake .35s linear infinite; }
+@keyframes shake{ 0%,100%{ transform:rotate(0); } 25%{ transform:rotate(-2deg); } 75%{ transform:rotate(2deg); } }
+.chaos-hint{ font-family:var(--font-mono); font-size:.72rem; color:var(--bone-dim); }
 
-.stat-card:hover {
-    transform: translateY(-5px);
+/* ========== STATS ========== */
+.stat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.stat-card{
+    background:rgba(34,230,255,.05); border:2px solid var(--gold); border-radius:14px;
+    padding:34px 20px; text-align:center; transition:transform .3s ease;
 }
+.stat-card:hover{ transform:translateY(-6px); }
+.stat-card h3{ font-family:var(--font-mono); text-transform:uppercase; font-size:.8rem; letter-spacing:.1em; color:var(--bone-dim); font-weight:400; margin:0 0 12px; }
+.stat-card p{ font-family:var(--font-mono); font-size:1.7rem; color:var(--gold); font-weight:700; margin:0; }
+.stat-card .sub{ font-size:.72rem; color:var(--bone-dim); margin-top:6px; font-weight:400; }
+@media (max-width:760px){ .stat-grid{ grid-template-columns:1fr; } }
+.stats-updated{ text-align:center; font-family:var(--font-mono); font-size:.72rem; color:var(--bone-dim); margin-top:22px; }
 
 /* ========== ROADMAP ========== */
-.roadmap-item {
-    background-color: rgba(0,191,255,0.08);
-    border-left: 5px solid #ffd700;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
+.phases{ display:flex; flex-direction:column; gap:0; max-width:640px; margin:0 auto; text-align:left; }
+.phase{
+    position:relative; padding:8px 0 36px 34px;
+    border-left:2px solid rgba(255,204,51,.3);
 }
+.phase:last-child{ border-left-color:transparent; padding-bottom:8px; }
+.phase::before{
+    content:''; position:absolute; left:-7px; top:10px; width:12px; height:12px; border-radius:50%;
+    background:var(--gold); box-shadow:0 0 0 4px var(--void), 0 0 14px var(--ember-hot);
+}
+.phase .tag{
+    display:block;
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.1em; color:var(--gold); text-transform:uppercase;
+    margin-bottom:8px;
+}
+.phase h3{ font-size:1.5rem; color:var(--bone); margin:0 0 8px; }
+.phase p{ color:var(--bone-dim); margin:0; max-width:52ch; }
 
-/* ========== BUTTONS ========== */
-.button {
-    background-color: #7e7e7e;
-    color: #0a0a0a;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-family: 'Bangers', cursive;
-    font-size: 1.3rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-    min-width: 200px;
-    text-align: center;
+/* ========== FAQ ========== */
+.faq-list{ max-width:740px; margin:0 auto; }
+.faq-item{
+    border-bottom:1px solid rgba(255,204,51,.2); padding:6px 0;
 }
+.faq-item summary{
+    cursor:pointer; list-style:none; padding:18px 4px; font-family:var(--font-body); font-weight:600;
+    font-size:1.08rem; color:var(--bone); display:flex; justify-content:space-between; align-items:center; gap:16px;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{
+    content:'+'; font-family:var(--font-mono); font-size:1.4rem; color:var(--gold); flex-shrink:0; transition:transform .25s ease;
+}
+.faq-item[open] summary::after{ transform:rotate(45deg); }
+.faq-item .faq-a{ padding:0 4px 20px; color:var(--bone-dim); }
 
-.button:hover {
-    background-color: #550000;
-    color: #ffd700;
-    transform: scale(1.05);
-}
-
-#community .buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-}
-
-/* ========== CONTRACT ADDRESS ========== */
-#ca-section {
-    margin-top: 40px;
-}
-
-#ca-input {
-    width: 100%;
-    max-width: 600px;
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-    border: 2px solid #ffd700;
-    padding: 12px;
-    text-align: center;
-    font-size: 1rem;
-    border-radius: 6px;
-    margin-bottom: 15px;
-}
-
-#copy-btn {
-    background-color: #ffd700;
-    color: #0a0a0a;
-    border: none;
-    padding: 10px 25px;
-    font-size: 1rem;
-    border-radius: 6px;
-    transition: 0.3s;
-}
-
-#copy-btn:hover {
-    background-color: #ffea80;
-}
+/* ========== COMMUNITY ========== */
+#community{ text-align:center; }
+.community-btns{ display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin:8px 0 40px; }
 
 /* ========== FOOTER ========== */
-footer {
-    background-color: #000;
-    color: #ffd700;
-    text-align: center;
-    padding: 25px;
+footer{
+    background:#000; color:var(--bone-dim); text-align:center; padding:34px 20px;
+    font-family:var(--font-mono); font-size:.78rem; border-top:1px solid rgba(255,204,51,.15);
 }
+footer strong{ color:var(--gold); }
 
-/* ========== SNOW ========== */
-.snow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+/* ========== MOBILE ========== */
+@media (max-width:768px){
+    section{ padding:72px 0; }
+    .btn{ width:100%; max-width:320px; text-align:center; }
+    .hero-ctas{ width:100%; padding:0 24px; }
 }
-
-.snowflake {
-    position: absolute;
-    background: #fff;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: fall linear infinite;
-}
-
-@keyframes fall {
-    to { transform: translateY(100vh); }
-}
-
-@keyframes bounce {
-    0%,20%,50%,80%,100% { transform: translateY(0); }
-    40% { transform: translateY(-25px); }
-    60% { transform: translateY(-12px); }
-}
-
-/* ========== MOBILE OPTIMIZATION ========== */
-@media (max-width: 768px) {
-
-    section {
-        padding: 60px 15px;
-    }
-
-    .button {
-        width: 100%;
-        max-width: 350px;
-    }
-
-    .stat-card {
-        padding: 20px;
-    }
-
-}
-
 </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#" style="color: #ffd700; font-family: 'Bangers', cursive; font-size: 2rem;">WTF</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="brand" href="#home"><img src="wtfLogo.png" alt="">WTF</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#tokenomics">Tokenomics</a></li>
+                <li><a href="#chaosmeter">Chaos Meter</a></li>
+                <li><a href="#stats-section">Stats</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a class="nav-cta" href="https://pump.fun/2gNqgLE31QdbQjzw17MMfBuuQraNxFJYeXGUzrgHpump" target="_blank" rel="noopener">Buy $WTF</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span><span></span><span></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#main">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About WTF</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#stats-section">WTF Stats</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#community"> WTF Community</a></li>
-                </ul>
-            </div>
         </div>
     </nav>
 
-    <header>
-        <div class="snow" id="snow"></div>
-        <img src="wtfLogo.png" alt="WTF Logo" style="max-width: 300px; margin-bottom: 20px;">
-        <h1>WTF</h1>
-        <p>What The Fuck?!</p>
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track" id="tickerTrack">
+            <!-- populated by JS, duplicated for seamless loop -->
+        </div>
+    </div>
+
+    <header id="home">
+        <canvas id="embers"></canvas>
+        <img src="wtfLogo.png" alt="WTF logo — an angry face with a WTF! censor bar" class="hero-logo">
+        <h1 id="heroTitle">WTF<span class="glitch-layer" aria-hidden="true">WTF</span></h1>
+        <p class="tagline">The coin for the exact moment you can't believe what you're looking at.</p>
+        <p class="subtag">Fair-launched on pump.fun · Solana · Zero explanation needed</p>
+        <div class="hero-ctas">
+            <a class="btn btn-primary" href="https://pump.fun/2gNqgLE31QdbQjzw17MMfBuuQraNxFJYeXGUzrgHpump" target="_blank" rel="noopener">Buy on Pump.fun</a>
+            <a class="btn btn-ghost" href="https://x.com/i/communities/2036306567339835458" target="_blank" rel="noopener">Join WTF on X</a>
+        </div>
+        <div class="scroll-cue"><span>scroll</span><span class="line"></span></div>
     </header>
 
-
-
     <section id="about">
-        <div class="container">
-            <h2>WTF</h2>
-            <p>WTF dropped and everything changed. The one that makes you scream What The Fuck! We talkin' degen assets, unhinged vibes, and a CTO community crazier than anything you've seen.</p>
-            <img src="wtfBanner.png" alt="WTF Meme" class="meme-img">
+        <div class="container about-grid">
+            <div class="text-col reveal">
+                <span class="eyebrow">// Origin story</span>
+                <h2>WTF Dropped. Everything Changed.</h2>
+                <p>Somewhere between a chart, a group chat, and a screenshot nobody asked for, $WTF happened. It's the one word every degen types right before they ape, right after they get rugged, and every single time in between.</p>
+                <p>No utility roadmap. No AI integration. No "revolutionary" anything. Just the single most honest reaction in crypto, now with a ticker symbol — run by whoever shows up and screams the loudest in the group chat.</p>
+                <p>If you get it, you get it. If you don't — well, that's kind of the point.</p>
+            </div>
+            <div class="img-col reveal">
+                <img src="wtfBanner.png" alt="WTF banner artwork — an explosive orange burst behind the WTF logo and wordmark" class="meme-img">
+            </div>
         </div>
     </section>
 
+    <section id="tokenomics">
+        <div class="container" style="text-align:center;">
+            <span class="eyebrow">// The numbers</span>
+            <h2>Tokenomics, Such As They Are</h2>
+            <p class="section-lede">Standard pump.fun fair-launch mechanics. No presale, no team allocation, no vesting schedule to trust — everyone entered the same bonding curve.</p>
+            <div class="token-grid reveal">
+                <div class="token-card">
+                    <div class="val">1,000,000,000</div>
+                    <div class="lab">Total Supply</div>
+                </div>
+                <div class="token-card">
+                    <div class="val">0% / 0%</div>
+                    <div class="lab">Buy / Sell Tax</div>
+                </div>
+                <div class="token-card">
+                    <div class="val">Solana</div>
+                    <div class="lab">Chain</div>
+                </div>
+                <div class="token-card">
+                    <div class="val">Pump.fun</div>
+                    <div class="lab">Launch Platform</div>
+                </div>
+            </div>
+            <div class="ca-strip reveal">
+                <code id="tokenCa">2gNqgLE31QdbQjzw17MMfBuuQraNxFJYeXGUzrgHpump</code>
+                <button class="copy-btn" data-copy-target="ca">Copy CA</button>
+            </div>
+        </div>
+    </section>
 
+    <section id="chaosmeter">
+        <div class="container meter-wrap">
+            <span class="eyebrow">// The WTF-O-Meter</span>
+            <h2>How Much "WTF" Is In The Chart Today?</h2>
+            <p class="section-lede">A completely scientific instrument. Spin it, screenshot it, post it. That's the whole utility.</p>
+            <svg class="gauge reveal" viewBox="0 0 300 170" aria-hidden="true">
+                <path d="M20,150 A130,130 0 0,1 280,150" fill="none" stroke="#2a1509" stroke-width="22" stroke-linecap="round"/>
+                <path d="M20,150 A130,130 0 0,1 280,150" fill="none" stroke="url(#gaugeGrad)" stroke-width="22" stroke-linecap="round"/>
+                <defs>
+                    <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#22e6ff"/>
+                        <stop offset="50%" stop-color="#ffcc33"/>
+                        <stop offset="100%" stop-color="#ff4d00"/>
+                    </linearGradient>
+                </defs>
+                <line class="needle" id="needle" x1="150" y1="150" x2="150" y2="40" stroke="#f5ede0" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="150" cy="150" r="10" fill="#ffcc33"/>
+            </svg>
+            <div class="chaos-readout" id="chaosReadout">--%</div>
+            <div class="chaos-verdict" id="chaosVerdict">Press the button. Face the chart.</div>
+            <button class="chaos-btn" id="chaosBtn">Spin The Meter</button>
+            <span class="chaos-hint">Not financial advice. Not any kind of advice.</span>
+        </div>
+    </section>
 
     <section id="stats-section">
         <div class="container">
-            <h2>Live Stats – WTF is going on!?</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <div class="stat-card">
-                        <h3>WTF Holders</h3>
-                        <p id="holders">Loading...</p>
-                    </div>
+            <span class="eyebrow">// Live from the chain</span>
+            <h2 style="text-align:center;">Wtf Is Going On Right Now</h2>
+            <p class="section-lede">Pulled live from on-chain holder data and DexScreener. Refreshes every five minutes so you don't have to.</p>
+            <div class="stat-grid reveal">
+                <div class="stat-card">
+                    <h3>Holders</h3>
+                    <p id="holders">Loading…</p>
+                    <div class="sub">Wallets currently holding $WTF</div>
                 </div>
-                <div class="col-md-5">
-                    <div class="stat-card">
-                        <h3>WTF Market Cap</h3>
-                        <p id="mcap">Loading...</p>
-                    </div>
+                <div class="stat-card">
+                    <h3>Market Cap</h3>
+                    <p id="mcap">Loading…</p>
+                    <div class="sub">Fully diluted, live</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Price</h3>
+                    <p id="price">Loading…</p>
+                    <div class="sub" id="priceChange">24h change —</div>
+                </div>
+            </div>
+            <div class="stats-updated" id="statsUpdated"></div>
+        </div>
+    </section>
+
+    <section id="roadmap">
+        <div class="container" style="text-align:center;">
+            <span class="eyebrow">// The plan, loosely speaking</span>
+            <h2>Roadmap</h2>
+            <p class="section-lede">Every memecoin has a roadmap with three phases and a promise of a game nobody plays. Ours is honest.</p>
+            <div class="phases">
+                <div class="phase reveal">
+                    <span class="tag">Phase 1</span>
+                    <h3>Drop It</h3>
+                    <p>Token goes live on pump.fun. Chart appears. First people to see it say "wtf" out loud, unprompted. Mission already accomplished.</p>
+                </div>
+                <div class="phase reveal">
+                    <span class="tag">Phase 2</span>
+                    <h3>Let It Cook</h3>
+                    <p>Holders find each other. Memes get posted faster than anyone can fact-check them. Community-run, community-fed, community-confused.</p>
+                </div>
+                <div class="phase reveal">
+                    <span class="tag">Phase 3</span>
+                    <h3>Nobody Knows</h3>
+                    <p>That's not a placeholder — that's the actual roadmap. Whatever happens next happens because the people holding it made it happen. Welcome to degen self-governance.</p>
                 </div>
             </div>
         </div>
     </section>
 
-   
+    <section id="faq">
+        <div class="container" style="text-align:center;">
+            <span class="eyebrow">// Before you ape</span>
+            <h2>Frequently Asked "Wtf"s</h2>
+            <div class="faq-list reveal">
+                <details class="faq-item">
+                    <summary>What actually is $WTF?</summary>
+                    <div class="faq-a">A memecoin fair-launched on pump.fun, built around the single most-used reaction in crypto. No hidden roadmap, no product behind it — the coin is the joke and the joke is the coin.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>How do I buy it?</summary>
+                    <div class="faq-a">Get a Solana wallet (Phantom or similar), fund it with SOL, then hit "Buy on Pump.fun" above and swap SOL for $WTF directly on the bonding curve or via Raydium if it's migrated.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Is there a buy or sell tax?</summary>
+                    <div class="faq-a">No. $WTF follows standard pump.fun fair-launch mechanics — 0% tax on either side. Always verify the contract address yourself before trading.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Is this financial advice?</summary>
+                    <div class="faq-a">No. It's a memecoin. It can go to zero. Only ever risk what you'd be fine losing entirely, and do your own research before you buy anything.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>What chain is $WTF on?</summary>
+                    <div class="faq-a">Solana. Fast, cheap, and exactly what a coin this chaotic needs to move at the speed of the group chat.</div>
+                </details>
+            </div>
+        </div>
+    </section>
 
     <section id="community">
         <div class="container text-center">
-            <h2>Join WTF Chaos</h2>
-            <div class="buttons d-flex flex-wrap justify-content-center gap-3 mb-5">
-                <a href="https://x.com/i/communities/2036306567339835458" class="button" target="_blank">WTF X</a>
-                <a href="https://pump.fun/2gNqgLE31QdbQjzw17MMfBuuQraNxFJYeXGUzrgHpump" class="button" target="_blank">Buy on Pump.Fun</a>
+            <span class="eyebrow">// Come scream with us</span>
+            <h2>Join The Chaos</h2>
+            <p class="section-lede" style="color:var(--bone-dim);">This coin runs on whoever shows up. That could be you.</p>
+            <div class="community-btns reveal">
+                <a href="https://x.com/i/communities/2036306567339835458" class="btn btn-primary" target="_blank" rel="noopener">WTF on X</a>
+                <a href="https://pump.fun/2gNqgLE31QdbQjzw17MMfBuuQraNxFJYeXGUzrgHpump" class="btn btn-ghost" target="_blank" rel="noopener">Buy on Pump.fun</a>
             </div>
-            <div id="ca-section">
-                <h3>Contract Address</h3>
-                <input id="ca-input" type="text" value="2gNqgLE31QdbQjzw17MMfBuuQraNxFJYeXGUzrgHpump" readonly>
-                <button id="copy-btn" onclick="copyCA()">Copy da CA</button>
+            <div class="ca-strip reveal" style="border-color:rgba(255,204,51,.5); background:rgba(0,0,0,.35);">
+                <code id="tokenCa2">2gNqgLE31QdbQjzw17MMfBuuQraNxFJYeXGUzrgHpump</code>
+                <button class="copy-btn" data-copy-target="ca">Copy CA</button>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 WTF $WTF. This is not financial advice – just pure meme chaos. Stay degen, or get left behind!</p>
+        <p>&copy; 2026 <strong>$WTF</strong>. This is not financial advice — just pure meme chaos. Stay degen, or get left behind.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
     <script>
+    (function(){
+        'use strict';
         const CA = '2gNqgLE31QdbQjzw17MMfBuuQraNxFJYeXGUzrgHpump';
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        async function getHolderCount() {
-    try {
-        const response = await fetch("/api/holders");
-        const data = await response.json();
-        return data.totalHolders || "N/A";
-    } catch (error) {
-        console.error("Error fetching holder count:", error);
-        return "Error";
-    }
-}
+        /* ---------- NAV TOGGLE ---------- */
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', isOpen);
+        });
+        navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }));
 
-        async function getMarketCap() {
-            try {
-                const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${CA}`);
-                const data = await response.json();
-                console.log('DexScreener raw response:', data); // Debug log - check browser console
+        /* ---------- COPY CA ---------- */
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                navigator.clipboard.writeText(CA).then(() => {
+                    const original = btn.textContent;
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => { btn.textContent = original; }, 1600);
+                }).catch(() => {
+                    alert('Copy failed — CA is: ' + CA);
+                });
+            });
+        });
 
-                if (data.pairs && data.pairs.length > 0) {
-                    const pair = data.pairs.reduce((prev, curr) => 
-                        (curr.liquidity?.usd > prev.liquidity?.usd) ? curr : prev
-                    );
-
-                    let cap = pair.fdv || pair.marketCap || 0;
-
-                    // Fallback calculation if both fields missing
-                    if (cap === 0 && pair.priceUsd && pair.priceUsd > 0) {
-                        const approximateSupply = 1000000000; // 1B total supply for this token
-                        cap = pair.priceUsd * approximateSupply;
-                    }
-
-                    return Math.round(cap).toLocaleString('en-US');
-                }
-                return 'N/A';
-            } catch (error) {
-                console.error('Error fetching market cap:', error);
-                return 'Error';
-            }
+        /* ---------- SCROLL REVEAL ---------- */
+        /* Progressive enhancement: elements are visible by default (in case JS
+           fails or IntersectionObserver is unsupported). Only once we know we
+           can observe + reveal them do we mark them 'pre' (hidden) and animate
+           them in as they enter the viewport. */
+        const revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window && !reduceMotion){
+            revealEls.forEach(el => el.classList.add('pre'));
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+            }, { threshold:.1, rootMargin:'0px 0px -40px 0px' });
+            revealEls.forEach(el => io.observe(el));
         }
 
-        async function updateStats() {
-            const cacheKey = 'holders_cache';
-            const cacheTimeKey = 'holders_cache_time';
-            const cacheDuration = 300000; // 5 minutes
-
-            const cachedHolders = localStorage.getItem(cacheKey);
-            const cacheTime = localStorage.getItem(cacheTimeKey);
-            const now = Date.now();
-            let holders;
-
-            if (cachedHolders && cacheTime && now - parseInt(cacheTime) < cacheDuration) {
-                holders = parseInt(cachedHolders);
-            } else {
-                holders = await getHolderCount();
-                if (typeof holders === 'number') {
-                    localStorage.setItem(cacheKey, holders.toString());
-                    localStorage.setItem(cacheTimeKey, now.toString());
-                }
-            }
-
-            document.getElementById('holders').innerText = (typeof holders === 'number' ? holders.toLocaleString() : holders) + ' Degens';
-
-            const mcap = await getMarketCap();
-            document.getElementById('mcap').innerText = `$${mcap} WTF Bucks`;
+        /* ---------- HERO GLITCH ---------- */
+        if (!reduceMotion){
+            const title = document.getElementById('heroTitle');
+            setInterval(() => {
+                title.classList.remove('glitching');
+                void title.offsetWidth;
+                title.classList.add('glitching');
+            }, 4200);
         }
 
-        function copyCA() {
-            navigator.clipboard.writeText(CA).then(() => {
-                alert('CA copied – Now spread da WTF!');
-            }).catch(err => {
-                console.error('Failed to copy:', err);
+        /* ---------- EMBER PARTICLES ---------- */
+        const canvas = document.getElementById('embers');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize(){
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+        }
+        function spawn(){
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: canvas.height + 10,
+                r: 1 + Math.random() * 2.4,
+                speed: .4 + Math.random() * 1.1,
+                drift: (Math.random() - .5) * .6,
+                life: 0,
+                maxLife: 260 + Math.random() * 200,
+                hue: Math.random() > .5 ? '255,138,0' : '255,204,51'
             });
         }
+        function tick(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            if (particles.length < 70 && Math.random() > .55) spawn();
+            particles.forEach(p => {
+                p.y -= p.speed;
+                p.x += p.drift;
+                p.life++;
+                const fade = 1 - p.life / p.maxLife;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+                ctx.fillStyle = `rgba(${p.hue},${Math.max(fade,0)*.8})`;
+                ctx.fill();
+            });
+            particles = particles.filter(p => p.life < p.maxLife && p.y > -10);
+            requestAnimationFrame(tick);
+        }
+        resize();
+        window.addEventListener('resize', resize);
+        if (!reduceMotion) requestAnimationFrame(tick);
 
-        // Initial update
+        /* ---------- CHAOS METER ---------- */
+        const verdicts = [
+            "Green candle, red flags. Perfectly balanced.",
+            "This is either a 100x or a lesson. Flip a coin.",
+            "The chart looks like a heart monitor. Concerning, exciting.",
+            "Someone just aped their rent money. Respect.",
+            "It's giving 'I'll explain later.'",
+            "Diamond hands or diamond delusions — TBD.",
+            "The group chat has stopped making sense. Bullish.",
+            "Chart's up, sanity's down. Standard Tuesday.",
+            "Nobody knows what's happening and everyone's buying more.",
+            "This is not a drill. It might also not be anything.",
+            "Peak degen energy detected.",
+            "It's giving unhinged. It's giving WTF. It's giving $WTF."
+        ];
+        const needle = document.getElementById('needle');
+        const readout = document.getElementById('chaosReadout');
+        const verdictEl = document.getElementById('chaosVerdict');
+        const chaosBtn = document.getElementById('chaosBtn');
+        let spinning = false;
+        chaosBtn.addEventListener('click', () => {
+            if (spinning) return;
+            spinning = true;
+            chaosBtn.classList.add('spinning');
+            chaosBtn.disabled = true;
+            const pct = Math.floor(Math.random() * 101);
+            const angle = -90 + (pct / 100) * 180;
+            const verdict = verdicts[Math.floor(Math.random() * verdicts.length)];
+            let ticks = 0;
+            const spin = setInterval(() => {
+                needle.style.transform = `rotate(${-90 + Math.random()*180}deg)`;
+                readout.textContent = Math.floor(Math.random()*101) + '%';
+                ticks++;
+                if (ticks > 9){
+                    clearInterval(spin);
+                    needle.style.transform = `rotate(${angle}deg)`;
+                    readout.textContent = pct + '%';
+                    verdictEl.textContent = verdict;
+                    chaosBtn.classList.remove('spinning');
+                    chaosBtn.disabled = false;
+                    spinning = false;
+                }
+            }, 90);
+        });
+
+        /* ---------- LIVE STATS ---------- */
+        async function getHolderCount(){
+            try{
+                const response = await fetch('/api/holders');
+                const data = await response.json();
+                return typeof data.totalHolders === 'number' ? data.totalHolders : 'N/A';
+            }catch(err){
+                console.error('Error fetching holder count:', err);
+                return 'N/A';
+            }
+        }
+
+        async function getMarketData(){
+            try{
+                const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${CA}`);
+                const data = await response.json();
+                if (data.pairs && data.pairs.length > 0){
+                    const pair = data.pairs.reduce((prev, curr) =>
+                        (curr.liquidity?.usd > prev.liquidity?.usd) ? curr : prev
+                    );
+                    let cap = pair.fdv || pair.marketCap || 0;
+                    if (cap === 0 && pair.priceUsd > 0){
+                        cap = pair.priceUsd * 1000000000;
+                    }
+                    return {
+                        mcap: Math.round(cap).toLocaleString('en-US'),
+                        price: pair.priceUsd ? Number(pair.priceUsd).toFixed(8) : null,
+                        change: pair.priceChange && typeof pair.priceChange.h24 === 'number' ? pair.priceChange.h24 : null
+                    };
+                }
+                return { mcap:'N/A', price:null, change:null };
+            }catch(err){
+                console.error('Error fetching market data:', err);
+                return { mcap:'Error', price:null, change:null };
+            }
+        }
+
+        function buildTicker(holders, market){
+            const items = [
+                `<span><span class="dot">●</span> $WTF ON SOLANA</span>`,
+                `<span><span class="dot">●</span> HOLDERS: ${typeof holders === 'number' ? holders.toLocaleString() : holders}</span>`,
+                `<span><span class="dot">●</span> MCAP: $${market.mcap}</span>`,
+                market.price ? `<span><span class="dot">●</span> PRICE: $${market.price}</span>` : `<span><span class="dot">●</span> WTF IS THE PRICE</span>`,
+                `<span><span class="dot">●</span> FAIR LAUNCHED ON PUMP.FUN</span>`,
+                `<span><span class="dot">●</span> NO TAX, NO PROMISES, NO CHILL</span>`
+            ];
+            const track = document.getElementById('tickerTrack');
+            track.innerHTML = items.join('') + items.join('');
+        }
+
+        async function updateStats(){
+            const holders = await getHolderCount();
+            document.getElementById('holders').textContent =
+                (typeof holders === 'number' ? holders.toLocaleString() : holders) + (typeof holders === 'number' ? ' Degens' : '');
+
+            const market = await getMarketData();
+            document.getElementById('mcap').textContent = market.mcap === 'N/A' || market.mcap === 'Error' ? market.mcap : `$${market.mcap}`;
+            document.getElementById('price').textContent = market.price ? `$${market.price}` : 'N/A';
+
+            const changeEl = document.getElementById('priceChange');
+            if (typeof market.change === 'number'){
+                const sign = market.change >= 0 ? '+' : '';
+                changeEl.textContent = `24h change ${sign}${market.change.toFixed(1)}%`;
+                changeEl.style.color = market.change >= 0 ? '#7CFF9E' : '#ff6b6b';
+            } else {
+                changeEl.textContent = '24h change —';
+            }
+
+            document.getElementById('statsUpdated').textContent =
+                'Last updated ' + new Date().toLocaleTimeString();
+
+            buildTicker(holders, market);
+        }
+
         updateStats();
-
-        // Auto-update every 5 minutes
         setInterval(updateStats, 300000);
-
-        
-
-      
+    })();
     </script>
 </body>
 </html>
